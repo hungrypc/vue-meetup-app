@@ -7,6 +7,12 @@ Vue.config.productionTip = false
 
 Vue.component('AppHero', AppHero)
 Vue.component('AppDropdown', AppDropdown)
+Vue.filter('capitalize', function (value) {
+  if (value && typeof value === 'string') {
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  }
+  return ''
+})
 
 new Vue({
   render: h => h(App),
