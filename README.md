@@ -1,4 +1,6 @@
-# vue-meetup-starter
+# Vue Meetup App
+
+Learning Vue through practice.
 
 ## Project setup
 ```
