@@ -1,6 +1,10 @@
 <template>
   <div class="column is-one-third">
-    <div class="card large">
+    <!-- <router-link class="card large" :to="`/meetups/${meetup._id}`"> -->
+    <router-link 
+      class="card large" 
+      :to="{name: 'PageMeetupDetail', params: {id: meetup._id}}"
+    >
       <div class="card-image">
         <figure class="image is-4by3">
           <img
@@ -33,7 +37,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 

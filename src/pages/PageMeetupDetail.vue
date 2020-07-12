@@ -4,7 +4,9 @@
 
 <script>
 export default {
-
+  created() {
+    const meetupId = this.$route.params.id
+  }
 }
 </script>
 
