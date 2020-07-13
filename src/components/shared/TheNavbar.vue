@@ -17,9 +17,9 @@
           Home
         </router-link>
 
-        <a class="navbar-item">
+        <router-link class="navbar-item" :to="'/find'">
           Find
-        </a>
+        </router-link>
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
