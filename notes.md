@@ -36,7 +36,7 @@ module.exports = {
 ```
 
 ## Vuex - State Management
-Setup:
+### Setup
 ```js
 // src/store/index.js
 import Vue from 'vue'
@@ -70,3 +70,78 @@ new Vue({
 }).$mount('#app')
 ```
 
+### Example
+```js
+// store
+export default new Vuex.Store({
+  state: {
+    meetups: [],
+    categories: [],
+    threads: [],
+    meetup: {}
+  },
+  getters: {
+    meetups(state) {
+      // get state values
+      return state.meetups
+    },
+    categories(state) {
+      // get state values
+      return state.categories
+    }
+  },
+  actions: {
+    fetchMeetups(context) {
+      axios.get('/api/v1/meetups').then(res => {
+        const meetups = res.data
+        // grab data, commit to mutation
+        context.commit('setMeetups', meetups)
+      })
+    },
+    fetchCategories(context) {
+      axios.get("/api/v1/categories").then(res => {
+        const categories = res.data;
+        // grab data, commit to mutation
+        context.commit('setCategories', categories)
+      });
+    }
+  },
+  mutations: {
+    setMeetups(state, values) {
+      // set values to state
+      state.meetups = values
+    },
+    setCategories(state, values) {
+      // set values to state
+      state.categories = values
+    }
+  }
+})
+
+
+// PageHome
+export default {
+  components: {
+    CategoryItem,
+    MeetupItem
+  },
+  computed: {
+    meetups() {
+      // get store state data
+      return this.$store.getters['meetups']
+    },
+    categories() {
+      // get store state data
+      return this.$store.getters['categories']
+    }
+  },
+  created() {
+    // run store actions on mount
+    this.$store.dispatch('fetchMeetups')
+    this.$store.dispatch('fetchCategories')
+  }
+};
+```
+
+## Injecting Vuex into Components
+For some reason, we're not going to use the above implementation (because the instructor is shit and doesn't explain why, the fucking idiot).
