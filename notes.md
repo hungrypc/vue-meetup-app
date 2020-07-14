@@ -35,3 +35,38 @@ module.exports = {
 }
 ```
 
+## Vuex - State Management
+Setup:
+```js
+// src/store/index.js
+import Vue from 'vue'
+import Vuex from 'vuex'
+import axios from 'axios'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  // where we store data, shared with components
+  state: {
+  },
+  // simple functions to get state from this store, like computed properties
+  getters: {
+  },
+  // like methods, shouldn't mutate state. good place to fetch data. action call should resolve into data
+  actions: {
+  },
+  // simple functions to mutate state
+  mutations: {
+  }
+})
+
+// main.js
+import store from './store'
+// ...
+new Vue({
+  router,
+  store,  // add store
+  render: h => h(App),
+}).$mount('#app')
+```
+
