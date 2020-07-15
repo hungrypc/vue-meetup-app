@@ -4,7 +4,7 @@ module.exports = {
     'no-console': 'off',
   },
   "parserOptions": {
-    "ecmaVersion": 2017
+    "ecmaVersion": 2018
   },
   "env": {
     "es6": true
