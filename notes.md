@@ -145,3 +145,6 @@ export default {
 
 ## Injecting Vuex into Components
 For some reason, we're not going to use the above implementation (because the instructor is shit and doesn't explain why, the fucking idiot).
+
+## Modules
+After splitting our store logic into separate modules, we kept our mutation `setItems()` in our root store but continued to call them in the modules outside of the root. To have the modules ref `setItems()` from the root, we add on the commit line `{ root: true }`.
