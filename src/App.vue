@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <TheNavbar />
-    <router-view />
+    <div class="page">
+      <router-view />
+    </div>
     <TheFooter />
   </div>
 </template>
@@ -49,5 +51,12 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+.page {
+  display: flex;
+  height: 72vh;
+  justify-content: center;
+  align-items: center;
 }
 </style>

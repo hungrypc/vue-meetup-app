@@ -3,6 +3,7 @@ import moment from 'moment'
 import App from './App.vue'
 import AppDropdown from './components/shared/AppDropdown'
 import AppHero from './components/shared/AppHero'
+import Spinner from './components/shared/Spinner'
 
 import router from './router'
 import store from './store'
@@ -11,6 +12,7 @@ Vue.config.productionTip = false
 
 Vue.component('AppHero', AppHero)
 Vue.component('AppDropdown', AppDropdown)
+Vue.component('Spinner', Spinner)
 
 Vue.filter('capitalize', function (value) {
   if (value && typeof value === 'string') {
