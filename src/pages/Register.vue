@@ -59,7 +59,7 @@
             </form>
           </div>
           <p class="has-text-grey">
-            <a href="../">Login</a> &nbsp;·&nbsp;
+            <router-link :to="{name: 'Login'}" href="../">Login</router-link> &nbsp;·&nbsp;
             <a>Sign Up With Google</a> &nbsp;·&nbsp;
             <a href="../">Need Help?</a>
           </p>
