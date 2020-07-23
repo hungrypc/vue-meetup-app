@@ -1,18 +1,16 @@
 <template>
-  <div v-if="false">
+  <div>
     <AppHero />
-    <div class="container">
+    <div class="container" v-if="dataLoaded">
       <section class="section">
         <div class="m-b-lg">
           <h1 class="title is-inline">Featured Meetups in "Location"</h1>
           <AppDropdown />
           <button class="button is-primary is-pulled-right m-r-sm">Create Meetups</button>
-          <router-link 
+          <router-link
             class="button is-primary is-pulled-right m-r-sm"
             :to="{ name: 'PageMeetupFind'}"
-          >
-            All
-          </router-link>
+          >All</router-link>
         </div>
         <div class="row columns is-multiline">
           <!-- meetups -->
@@ -29,21 +27,26 @@
         </div>
       </section>
     </div>
-  </div>
-  <div v-else>
-    <Spinner/>
+    <div v-else>
+      <Spinner />
+    </div>
   </div>
 </template>
 
 <script>
 import CategoryItem from "@/components/CategoryItem";
-import MeetupItem from "@/components/MeetupItem"
-import { mapActions, mapState } from 'vuex'
+import MeetupItem from "@/components/MeetupItem";
+import { mapActions, mapState } from "vuex";
 
 export default {
   components: {
     CategoryItem,
     MeetupItem
+  },
+  data() {
+    return {
+      dataLoaded: false
+    };
   },
   computed: {
     // meetups() {
@@ -54,18 +57,18 @@ export default {
     // },
     ...mapState({
       meetups: state => state.meetups.items,
-      categories: state => state.categories.items 
+      categories: state => state.categories.items
     })
   },
   created() {
     // this.$store.dispatch('fetchMeetups')
     // this.$store.dispatch('fetchCategories')
-    this.fetchMeetups()
-    this.fetchCategories()
+    Promise.all([this.fetchMeetups(), this.fetchCategories()])
+      .then(() => this.dataLoaded = true)
   },
   methods: {
-    ...mapActions('meetups', ['fetchMeetups']),
-    ...mapActions('categories', ['fetchCategories'])
+    ...mapActions("meetups", ["fetchMeetups"]),
+    ...mapActions("categories", ["fetchCategories"])
   }
 };
 </script>

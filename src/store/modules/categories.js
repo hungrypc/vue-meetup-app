@@ -8,7 +8,7 @@ export default {
   getters: {},
   actions: {
     fetchCategories(context) {
-      axios.get("/api/v1/categories").then(res => {
+      return axios.get("/api/v1/categories").then(res => {
         const categories = res.data;
         context.commit('setItems', { resource: 'categories', items: categories }, { root: true })
         return context.state.categories

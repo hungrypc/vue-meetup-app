@@ -170,7 +170,7 @@ export default {
       return this.meetup.meetupCreator || {}
     },
     ...mapState({
-      meetup: state => state.meetup.item,
+      meetup: state => state.meetups.item,
       threads: state => state.threads.items
     })
   },
