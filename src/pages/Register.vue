@@ -14,21 +14,24 @@
                 <div class="control">
                   <input class="input is-large"
                          type="text"
-                         placeholder="Username">
+                         placeholder="Username"
+                         v-model="form.username">
                 </div>
               </div>
               <div class="field">
                 <div class="control">
                   <input class="input is-large"
                          type="text"
-                         placeholder="Name">
+                         placeholder="Name"
+                         v-model="form.name">
                 </div>
               </div>
               <div class="field">
                 <div class="control">
                   <input class="input is-large"
                          type="email"
-                         placeholder="Your Email">
+                         placeholder="Your Email"
+                         v-model="form.email">
                 </div>
               </div>
               <div class="field">
@@ -36,7 +39,8 @@
                   <input class="input is-large"
                          type="text"
                          placeholder="Avatar"
-                         autocomplete="">
+                         autocomplete=""
+                         v-model="form.avatar">
                 </div>
               </div>
               <div class="field">
@@ -44,7 +48,8 @@
                   <input class="input is-large"
                          type="password"
                          placeholder="Your Password"
-                         autocomplete="new-password">
+                         autocomplete="new-password"
+                         v-model="form.password">
                 </div>
               </div>
               <div class="field">
@@ -52,10 +57,11 @@
                   <input class="input is-large"
                          type="password"
                          placeholder="Password Confirmation"
-                         autocomplete="off">
+                         autocomplete="off"
+                         v-model="form.passwordConfirmation">
                 </div>
               </div>
-              <button type="submit" class="button is-block is-info is-large is-fullwidth">Register</button>
+              <button @click.prevent="register" type="submit" class="button is-block is-info is-large is-fullwidth">Register</button>
             </form>
           </div>
           <p class="has-text-grey">
@@ -71,6 +77,23 @@
 
 <script>
   export default {
+    data() {
+      return {
+        form: {
+          username: null,
+          name: null,
+          email: null,
+          avatar: null,
+          password: null,
+          passwordConfirmation: null
+        }
+      }
+    },
+    methods: {
+      register() {
+        console.log(this.form)
+      }
+    }
   }
 </script>
 

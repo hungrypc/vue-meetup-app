@@ -16,7 +16,9 @@
                          type="email"
                          placeholder="Your Email"
                          autofocus=""
-                         autocomplete="email">
+                         autocomplete="email"
+                         v-model="form.email"
+                  >
                 </div>
               </div>
               <div class="field">
@@ -24,10 +26,12 @@
                   <input class="input is-large"
                          type="password"
                          placeholder="Your Password"
-                         autocomplete="current-password">
+                         autocomplete="current-password"
+                         v-model="form.password"
+                  >
                 </div>
               </div>
-              <button class="button is-block is-info is-large is-fullwidth">Login</button>
+              <button @click.prevent="login" class="button is-block is-info is-large is-fullwidth">Login</button>
             </form>
           </div>
           <p class="has-text-grey">
@@ -43,6 +47,19 @@
 
 <script>
   export default {
+    data() {
+      return {
+        form: {
+          email: null,
+          password: null
+        }
+      }
+    },
+    methods: {
+      login() {
+        console.log(this.form)
+      }
+    }
   }
 </script>
 

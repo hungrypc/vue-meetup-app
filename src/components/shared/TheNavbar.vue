@@ -47,10 +47,10 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <router-link :to="{name: 'Login'}" class="button is-primary">
+            <router-link :to="{name: 'Register'}" class="button is-primary">
               <strong>Sign up</strong>
             </router-link>
-            <router-link :to="{name: 'Register'}" class="button is-light">
+            <router-link :to="{name: 'Login'}" class="button is-light">
               Log in
             </router-link>
           </div>
