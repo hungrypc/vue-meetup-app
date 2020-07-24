@@ -57,7 +57,7 @@
     },
     methods: {
       login() {
-        console.log(this.form)
+        this.$store.dispatch('auth/userLogin', this.form)
       }
     }
   }

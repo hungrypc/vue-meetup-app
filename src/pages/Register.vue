@@ -91,7 +91,7 @@
     },
     methods: {
       register() {
-        console.log(this.form)
+        this.$store.dispatch('auth/userRegister', this.form)
       }
     }
   }
