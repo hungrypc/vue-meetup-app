@@ -61,6 +61,22 @@ exports.login = function(req, res) {
   }
 
   return passport.authenticate('local', (err, passportUser) => {
-    
-  })
+    if (err) {
+      return next(err)
+    }
+
+    if (passportUser) {
+      //we have this function because of passport middleware:
+      req.login(passportUser, function(err) {
+        if (err) { next(err) }
+        return res.json(passportUser)
+      })
+    } else {
+      return res.status(422).send({
+        errors: {
+          authentication: 'something went wrong'
+        }
+      })
+    }
+  })(req, res, next)
 }
