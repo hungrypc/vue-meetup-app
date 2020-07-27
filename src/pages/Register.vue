@@ -117,6 +117,7 @@
                 @click.prevent="register"
                 type="submit"
                 class="button is-block is-info is-large is-fullwidth"
+                :disabled="isFormInvalid"
               >Register</button>
             </form>
           </div>
@@ -172,6 +173,11 @@ export default {
         required,
         sameAs: sameAs('password')
       }
+    }
+  },
+  computed: {
+    isFormInvalid() {
+      return this.$v.form.$invalid
     }
   },
   methods: {
