@@ -80,3 +80,8 @@ exports.login = function(req, res) {
     }
   })(req, res, next)
 }
+
+exports.logout = function(req, res) {
+  req.logout()
+  return res.json({ status: 'session destroyed' })
+}
