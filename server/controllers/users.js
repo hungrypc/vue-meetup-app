@@ -42,7 +42,7 @@ exports.register = function(req, res) {
   })
 }
 
-exports.login = function(req, res) {
+exports.login = function(req, res, next) {
   const { email, password } = req.body
 
   if (!email) {

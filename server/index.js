@@ -5,7 +5,7 @@ const config = require('./config/dev');
 
 const session = require('express-session')
 const passport = require('passport')
-const MongoDBStore = require('connect-mongodb-session')
+const MongoDBStore = require('connect-mongodb-session')(session)
 
 const store = new MongoDBStore({
   uri: config.DB_URI,

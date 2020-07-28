@@ -94,7 +94,9 @@ export default {
   methods: {
     login() {
       this.$v.form.$touch();
-      this.$store.dispatch("auth/userLogin", this.form);
+      this.$store.dispatch("auth/userLogin", this.form)
+        .then(() => this.$router.push('/'))
+        .catch(err => console.log(err))
     }
   }
 };

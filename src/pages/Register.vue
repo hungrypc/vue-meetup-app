@@ -183,7 +183,9 @@ export default {
   methods: {
     register() {
       this.$v.form.$touch();
-      this.$store.dispatch("auth/userRegister", this.form);
+      this.$store.dispatch("auth/userRegister", this.form)
+        .then((res) => this.$touer.push('/login'))
+        .catch((err) => console.log(err))
     }
   }
 };
