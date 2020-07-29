@@ -40,21 +40,22 @@ export default {
       const authUser = context.getters['authUser']
       if(authUser) {
         return Promise.resolve(authUser)
+      } else {
+        return axios.get('/api/v1/users/me')
+          .then(res => {
+            const user = res.data
+            context.commit('setAuthUser', user)
+            context.commit('setAuthState', true)
+            return user
+          })
+          .catch(err => {
+            context.commit('setAuthUser', null)
+            context.commit('setAuthState', true)
+            console.log(err)
+            return err
+          })
       }
 
-      return axios.get('/api/v1/users/me')
-        .then(res => {
-          const user = res.data
-          context.commit('setAuthUser', user)
-          context.commit('setAuthState', true)
-          return user
-        })
-        .catch(err => {
-          context.commit('setAuthUser', null)
-          context.commit('setAuthState', true)
-          console.log(err)
-          return err
-        })
     }
   },
   mutations: {
