@@ -37,6 +37,11 @@ export default {
         })
     },
     getAuthUser(context) {
+      const authUser = context.getters['authUser']
+      if(authUser) {
+        return Promise.resolve(authUser)
+      }
+
       return axios.get('/api/v1/users/me')
         .then(res => {
           const user = res.data
