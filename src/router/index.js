@@ -29,12 +29,18 @@ const router = new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta: {
+        onlyGuestUser: true
+      }
     },
     {
       path: '/register',
       name: 'Register',
-      component: Register
+      component: Register,
+      meta: {
+        onlyGuestUser: true
+      }
     },
     {
       path: '/meetups/secret',
@@ -65,9 +71,14 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   store.dispatch('auth/getAuthUser')
-  .then(authUser => {
-    if (to.meta.onlyAuthUser && !store.getters['auth/isAuthenticated']) {
+  .then(() => {
+    const isAuthenticated = store.getters['auth/isAuthenticated']
+    
+    if (to.meta.onlyAuthUser && !isAuthenticated) {
       next({ name: 'NotAuthenticated' })
+    }
+    if (to.meta.onlyGuestUser && isAuthenticated) {
+      next({ name: 'PageHome' })
     }
 
     next()
