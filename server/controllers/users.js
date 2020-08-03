@@ -66,11 +66,13 @@ exports.login = function(req, res, next) {
     }
 
     if (passportUser) {
-      //we have this function because of passport middleware:
-      req.login(passportUser, function(err) {
-        if (err) { next(err) }
-        return res.json(passportUser)
-      })
+      return res.json(passportUser.toAuthJSON())
+      // SESSION AUTH
+      // we have this function because of passport middleware:
+      // req.login(passportUser, function(err) {
+      //   if (err) { next(err) }
+      //   return res.json(passportUser)
+      // })
     } else {
       return res.status(422).send({
         errors: {
@@ -87,7 +89,8 @@ exports.getCurrentUser = function(req, res, next) {
   if(!user) {
     return res.sendStatus(422)
   }
-  return res.json(user)
+  // return res.json(user)
+  return res.json(user.toAuthJSON())
 }
 
 exports.logout = function(req, res) {
